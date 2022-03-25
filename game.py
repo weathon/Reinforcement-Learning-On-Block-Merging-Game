@@ -22,13 +22,17 @@ Still need hor check, or "1" will be died"""
 
 def display():
     print("Score: %s\nSteps: %s" % (score,steps))
-    print("0\t1\t2\t3\t4\t5")
+    # print("0\t1\t2\t3\t4\t5")
+    for i in range(5):
+        print('{0: <5}'.format(str(i)),end="")
+    print()
+
     for i in range(field.shape[0]):
         for j in range(field.shape[1]):
             if field[i,j]== 0:
-                print("_",end="\t")
+                print('{0: <5}'.format("_"),end="")
             else:
-                print(int(field[i,j]),end="\t")
+                print('{0: <5}'.format(int(field[i,j])),end="")
         print()
 
 def push_block(col, num):
@@ -75,7 +79,11 @@ def check_merging():
         if np.array_equal(last_stage,field): #no change
             break
 
-    
+    for col in range(0,6):
+        for i in range(4,-1,-1):
+            if field[i][col] == 0:
+                field[i][col] = field[i+1][col]
+                field[i][col] = 0
 
 while 1:
     display()
