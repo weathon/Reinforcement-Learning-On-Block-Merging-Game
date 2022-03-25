@@ -35,17 +35,19 @@ def push_block(col, num):
             return
     field[0][col] = num
     
-
 def check_merging():
     global merge
     while 1:
         last_stage = np.copy(field)
         # from bottom up, so there will no be gaps
+        # tested hor check works
         for col in range(0,6):
             for i in range(4,-1,-1):
                 if field[i][col] == field[i+1][col]:
                     field[i+1][col] = 0
                     field[i][col] = field[i][col]*2
+        
+        
         merge+=1
         if np.array_equal(last_stage,field): #no change
             return
