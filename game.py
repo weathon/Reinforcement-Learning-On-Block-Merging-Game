@@ -6,6 +6,20 @@ steps = 0
 score = 0
 merge = 0
 
+"""Score: 8.0
+Steps: 10
+0       1       2       3       4       5
+_       4       8       _       _       8
+_       2       _       _       _       _
+_       8       _       _       _       _
+_       _       _       _       _       _
+_       _       _       _       _       _
+_       _       _       _       _       _
+The next number is: 4
+Which col (starts with 0) you want to put it to? 
+Still need hor check, or "1" will be died"""
+
+
 def display():
     print("Score: %s\nSteps: %s" % (score,steps))
     print("0\t1\t2\t3\t4\t5")
@@ -16,8 +30,6 @@ def display():
             else:
                 print(int(field[i,j]),end="\t")
         print()
-
-
 
 def push_block(col, num):
     if field[5][col] != 0: # Should I check merge first? Yes
@@ -46,11 +58,24 @@ def check_merging():
                 if field[i][col] == field[i+1][col]:
                     field[i+1][col] = 0
                     field[i][col] = field[i][col]*2
-        
-        
         merge+=1
         if np.array_equal(last_stage,field): #no change
-            return
+            break
+
+    while 1:
+        last_stage = np.copy(field)
+        # from bottom up, so there will no be gaps
+        # tested hor check works
+        for i in range(0,6):
+            for col in range(4,-1,-1):
+                if field[i][col] == field[i][col+1]:
+                    field[i][col+1] = 0
+                    field[i][col] = field[i][col]*2 #bizixkouzangxkouhungbizizene haixuyaodrop
+        merge+=1 
+        if np.array_equal(last_stage,field): #no change
+            break
+
+    
 
 while 1:
     display()
