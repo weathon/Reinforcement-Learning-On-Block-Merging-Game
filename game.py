@@ -23,7 +23,7 @@ Still need hor check, or "1" will be died"""
 def display():
     print("Score: %s\nSteps: %s" % (score,steps))
     # print("0\t1\t2\t3\t4\t5")
-    for i in range(5):
+    for i in range(6):
         print('{0: <5}'.format(str(i)),end="")
     print()
 
@@ -83,7 +83,7 @@ def check_merging():
         for i in range(4,-1,-1):
             if field[i][col] == 0:
                 field[i][col] = field[i+1][col]
-                field[i][col] = 0
+                field[i+1][col] = 0
 
 while 1:
     display()
