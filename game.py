@@ -1,10 +1,17 @@
 import numpy as np
 import random 
 import os
-field = np.zeros((6,6))
-steps = 0
-score = 0
-merge = 0
+import pyGameDisplay.generateFrame
+
+def init():
+    global choices, field, steps, score, merge
+    choices = [2,2,2,4,4,4,8]
+    field = np.zeros((6,6))
+    steps = 0
+    score = 0
+    merge = 0
+
+
 
 """Score: 8.0
 Steps: 10
@@ -57,14 +64,14 @@ def push_block(col, num):
             field[5][col] = num*2
             return
         print("Game over!")
-        quit()
+        return -1
     for i in range(4,-1,-1):
         if field[i][col] != 0:
             if field[i][col] == num:
                 field[i][col] = 2*field[i][col]
-                return
+                return 0
             field[i+1][col] = num
-            return
+            return 0
     field[0][col] = num
     
 def check_merging():
@@ -107,9 +114,10 @@ def check_merging():
             break
 
 
-choices = [2,2,2,4,4,4,8]
 
 if __name__ == "__main__":
+    init()
+    i = 0
     while 1:
         display()
         next_number = random.choice(choices)
@@ -123,4 +131,6 @@ if __name__ == "__main__":
         maxNum = np.max(field)
         if not maxNum in choices:
             choices.append(int(maxNum/2))
+        pyGameDisplay.generateFrame.generateFrame(i,field,next_number)
+        i+=1
 

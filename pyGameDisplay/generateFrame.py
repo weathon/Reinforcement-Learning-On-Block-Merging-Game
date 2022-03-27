@@ -2,7 +2,10 @@ from PIL import Image, ImageDraw
 import numpy as np
 
  
-
+#generateFrame(frameNumber, field, nextNumber)
+#frame will be saved as frame_'frameNumber'.png 
+#field is all fields of the game
+#next number is the next number of the turn to be printed out
 def generateFrame(frameNumber, field, nextNumber):
         img = Image.new('RGB', (500, 600), color = (187, 173, 160))
         color_empty = (204, 192, 179)
@@ -22,6 +25,7 @@ def generateFrame(frameNumber, field, nextNumber):
 
 
         d = ImageDraw.Draw(img)
+        d.text((200, 585), 'Next Number is: ' + str(nextNumber))
         for col in range (0,6):
                 for height in range (0,7):
                         if height == 0: #header
@@ -71,9 +75,9 @@ def generateFrame(frameNumber, field, nextNumber):
                                 d.text((83 * (col) + 83/2, 83 * (height)+  83/2), str(int(field[row][col])), fill=fontColor)
 
         
-        img.save('frame_' + str(frameNumber) + '.png')
+        img.save('pngs'frame_' + str(frameNumber) + '.png')
 
-
+#test code
 # field = np.zeros((6,6))
 # field[0][0] = 0
 # field[0][1] = 2
@@ -87,27 +91,6 @@ def generateFrame(frameNumber, field, nextNumber):
 # field[1][3] = 512
 # field[1][4] = 1024
 # field[1][5] = 2048
+
 # generateFrame(1,field,1)
-
-
-
-# 0,0      83,0      2(83),0      3(83),0      4(83),0      5(83),0
-# 0,83     83,83     2(83),83     3(83),83     4(83),83     5(83),83
-# 0,2(83)  83,2(83)  2(83),2(83)  3(83),2(83)  4(83),2(83)  5(83),2(83)
-# 0,3(83)  83,3(83)  2(83),3(83)  3(83),3(83)  4(83),3(83)  5(83),3(83)
-# 0,4(83)  83,4(83)  2(83),4(83)  3(83),4(83)  4(83),4(83)  5(83),4(83)
-# 0,5(83)  83,5(83)  2(83),5(83)  3(83),5(83)  4(83),5(83)  5(83),5(83)
-
-# private static final Color COLOR_EMPTY = Color.rgb(204, 192, 179);
-#    private static final Color COLOR_2 = Color.rgb(238, 228, 218);
-#    private static final Color COLOR_4 = Color.rgb(237, 224, 200);
-#    private static final Color COLOR_8 = Color.rgb(242, 177, 121);
-#    private static final Color COLOR_16 = Color.rgb(245, 149, 99);
-#    private static final Color COLOR_32 = Color.rgb(246, 124, 95);
-#    private static final Color COLOR_64 = Color.rgb(246, 94, 59);
-#    private static final Color COLOR_128 = Color.rgb(237, 207, 114);
-#    private static final Color COLOR_256 = Color.rgb(237, 204, 97);
-#    private static final Color COLOR_512 = Color.rgb(237, 200, 80);
-#    private static final Color COLOR_1024 = Color.rgb(237, 197, 63);
-#    private static final Color COLOR_2048 = Color.rgb(237, 194, 46);
 
