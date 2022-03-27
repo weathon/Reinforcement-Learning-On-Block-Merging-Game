@@ -19,6 +19,22 @@ The next number is: 4
 Which col (starts with 0) you want to put it to? 
 Still need hor check, or "1" will be died"""
 
+"""Score: 8.0
+Steps: 12
+0    1    2    3    4    5    
+4    8    4    _    _    _    
+2    _    8    _    _    _    
+8    _    _    _    _    _    
+_    _    _    _    _    _    
+_    _    _    _    _    _    
+_    _    _    _    _    _    
+The next number is: 4
+Which col (starts with 0) you want to put it to? 3
+
+
+
+looping
+"""
 
 def display():
     print("Score: %s\nSteps: %s" % (score,steps))
@@ -79,19 +95,32 @@ def check_merging():
         if np.array_equal(last_stage,field): #no change
             break
 
-    for col in range(0,6):
-        for i in range(4,-1,-1):
-            if field[i][col] == 0:
-                field[i][col] = field[i+1][col]
-                field[i+1][col] = 0
+    while 1:
+        last_stage = np.copy(field) # forget this
+        for col in range(0,6):
+            for i in range(4,-1,-1):
+                if field[i][col] == 0:
+                    field[i][col] = field[i+1][col]
+                    field[i+1][col] = 0
+        # merge+=1 
+        if np.array_equal(last_stage,field): #no change
+            break
 
-while 1:
-    display()
-    next_number = 2**random.choice([1,1,1,1,1,1,2,2,2,2,2,3,3])
-    print("The next number is: %s" % next_number)
-    ans = int(input("Which col (starts with 0) you want to put it to? "))
-    push_block(ans,next_number)
-    check_merging()
-    steps += 1
-    score = np.max(field)
-    os.system("clear")
+
+choices = [2,2,2,4,4,4,8]
+
+if __name__ == "__main__":
+    while 1:
+        display()
+        next_number = random.choice(choices)
+        print("The next number is: %s" % next_number)
+        ans = int(input("Which col (starts with 0) you want to put it to? "))
+        push_block(ans,next_number)
+        check_merging()
+        steps += 1
+        score = np.max(field)
+        os.system("clear")
+        maxNum = np.max(field)
+        if not maxNum in choices:
+            choices.append(int(maxNum/2))
+
