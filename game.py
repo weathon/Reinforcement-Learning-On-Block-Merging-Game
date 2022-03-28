@@ -123,7 +123,8 @@ if __name__ == "__main__":
         next_number = random.choice(choices)
         print("The next number is: %s" % next_number)
         ans = int(input("Which col (starts with 0) you want to put it to? "))
-        push_block(ans,next_number)
+        if push_block(ans,next_number) == -1:
+            quit()
         check_merging()
         steps += 1
         score = np.max(field)

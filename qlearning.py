@@ -69,7 +69,7 @@ for episode in range(100):
         
         result = target.predict(memoryCell(old_field, action, num, reward))
         nextState = field
-        loss = 1
+        loss = result
         model.train(loss)
         # no need for isolation?
 
