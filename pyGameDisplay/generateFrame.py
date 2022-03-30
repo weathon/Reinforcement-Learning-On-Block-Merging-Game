@@ -1,6 +1,20 @@
 from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 
+color_empty = (204, 192, 179)
+color_2 = (238, 228, 218)
+color_4 = (237, 224, 200)
+color_8 = (242, 177, 121)
+color_16 = (245, 149, 99)
+color_32 = (246, 124, 95)
+color_64 = (246, 94, 59)
+color_128 = (237, 207, 114)
+color_256 = (237, 204, 97)
+color_512 = (237, 200, 80)
+color_1024 = (237, 197, 63)
+color_2048 = (237, 194, 46)
+font_light = (249, 246, 242)
+font_dark = (119, 110, 101)
  
 #generateFrame(frameNumber, field, nextNumber)
 #frame will be saved as frame_'frameNumber'.png 
@@ -8,20 +22,6 @@ import numpy as np
 #next number is the next number of the turn to be printed out
 def generateFrame(frameNumber, field, nextNumber):
         img = Image.new('RGB', (500, 600), color = (187, 173, 160))
-        color_empty = (204, 192, 179)
-        color_2 = (238, 228, 218)
-        color_4 = (237, 224, 200)
-        color_8 = (242, 177, 121)
-        color_16 = (245, 149, 99)
-        color_32 = (246, 124, 95)
-        color_64 = (246, 94, 59)
-        color_128 = (237, 207, 114)
-        color_256 = (237, 204, 97)
-        color_512 = (237, 200, 80)
-        color_1024 = (237, 197, 63)
-        color_2048 = (237, 194, 46)
-        font_light = (249, 246, 242)
-        font_dark = (119, 110, 101)
         
         font = ImageFont.truetype("/var/www/html/nextcloud/core/fonts/NotoSans-Bold.ttf", size=12)
 
@@ -44,27 +44,27 @@ def generateFrame(frameNumber, field, nextNumber):
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_empty, outline=(187, 173, 160), width=3, radius=7)
                                         #d.text((83 * (col), 83 * (height)), str(col) + ' ' + str(height), fill=(255,255,0)) #adds row / col for debugging
                                         continue
-                                if field[row][col] == 2:
+                                elif field[row][col] == 2:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_2, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 4:
+                                elif field[row][col] == 4:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_4, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 8:
+                                elif field[row][col] == 8:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_8, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 16:
+                                elif field[row][col] == 16:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_16, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 32:
+                                elif field[row][col] == 32:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_32, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 64:
+                                elif field[row][col] == 64:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_64, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 128:
+                                elif field[row][col] == 128:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_128, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 256:
+                                elif field[row][col] == 256:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_256, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 512:
+                                elif field[row][col] == 512:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_512, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] == 1024:
+                                elif field[row][col] == 1024:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_1024, outline=(187, 173, 160), width=3, radius=7)
-                                if field[row][col] >= 2048:
+                                elif field[row][col] >= 2048:
                                         d.rounded_rectangle((83 * (col),  83 * (height), 83 * (col+1), 83 * (height+1)), fill=color_2048, outline=(187, 173, 160), width=3, radius=7)
 
                                 # d.rounded_rectangle((83 * (col),  83 * (row), 83 * (col+1), 83 * (row+1)), fill=(0, 192, 192), outline="yellow",
